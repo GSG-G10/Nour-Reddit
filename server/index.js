@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
-const bcrypt = require('bcrypt');
-const registerRouter = require('./routes/register');
+const registerRouter = require('./controllers/register');
+const loginRouter = require('./controllers/login');
 
 const app = express();
 
@@ -18,6 +18,9 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
 });
 
+app.post('/login', loginRouter);
+app.post('/register', registerRouter);
+
 app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'register.html'));
 });
@@ -25,7 +28,6 @@ app.get('/register', (req, res) => {
 // app.post('/register', (req, res) => {
 //   console.log(req.body);
 // });
-app.post('/register', registerRouter);
 
 // app.post('/register', async (req, res) => {
 //   try {
