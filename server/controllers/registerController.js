@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const signUser = require('../postgres/query/signup');
-const createToken = require('../utils/createToken');
+const { createToken } = require('../utils/createToken');
 const { registerValidation } = require('../utils/validation');
 
 // eslint-disable-next-line consistent-return

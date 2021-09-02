@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const emailExists = require('../postgres/query/emailExists');
 const { loginValidation } = require('../utils/validation');
-const createToken = require('../utils/createToken');
+const { createToken } = require('../utils/createToken');
 
 // eslint-disable-next-line consistent-return
 const routerlogin = async (req, res) => {
