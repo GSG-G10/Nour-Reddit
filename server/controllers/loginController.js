@@ -1,7 +1,9 @@
 const bcrypt = require('bcrypt');
 const emailExists = require('../postgres/query/emailExists');
 const { loginValidation } = require('../utils/validation');
+const createToken = require('../utils/createToken');
 
+// eslint-disable-next-line consistent-return
 const routerlogin = async (req, res) => {
   // validate data before we login in
   const { error } = await loginValidation(req.body);
@@ -15,10 +17,11 @@ const routerlogin = async (req, res) => {
   const dbPassword = user.rows[0].password;
   const validPassword = await bcrypt.compare(req.body.password, dbPassword);
   if (!validPassword) return res.status(400).json({ success: false, msg: 'Incorrect password' });
-  console.log('logged in!');
 
-  // .then((result) => result.rows[0])
-  // const rows = user.rowCount;
+  // create token and store it in cookies
+  const { id, username } = user.rows[0];
+  createToken(id, username, process.env.TOKEN_SERCRET, res);
+  res.redirect('/');
 };
 
 module.exports = routerlogin;
