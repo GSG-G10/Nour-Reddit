@@ -24,9 +24,5 @@ app.use('/', postRoutes);
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
-// app.get('/post', (req, res) => {
-//   res.sendFile(path.join(__dirname, '..', 'public', 'pages', 'post.html'));
-// });
-// app.post('/post', privateRoute, createPost);
 
 module.exports = app;
