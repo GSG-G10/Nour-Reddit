@@ -1,10 +1,11 @@
+const path = require('path');
 const bcrypt = require('bcrypt');
 const signUser = require('../postgres/query/signup');
 const { createToken } = require('../utils/createToken');
 const { registerValidation } = require('../utils/validation');
 
 // eslint-disable-next-line consistent-return
-const registerRouter = async (req, res) => {
+exports.registerPost = async (req, res) => {
   // validate data before we make a user
   const { error } = await registerValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -27,4 +28,6 @@ const registerRouter = async (req, res) => {
   }
 };
 
-module.exports = registerRouter;
+exports.registerGet = (req, res) => {
+  res.sendFile(path.join(__dirname, '..', '..', 'public', 'register.html'));
+};

@@ -1,6 +1,4 @@
-const logoutRouter = (req, res) => {
+exports.logoutRouter = (req, res) => {
   res.clearCookie('authToken');
   res.redirect('/');
 };
-
-module.exports = logoutRouter;

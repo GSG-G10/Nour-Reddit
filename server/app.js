@@ -4,7 +4,7 @@ const express = require('express');
 const compresion = require('compression');
 const cookieParser = require('cookie-parser');
 const router = require('./routes/auth');
-const { private , notLogged } = require('./middlewares/privateRoute');
+const { private } = require('./middlewares/privateRoute');
 
 const app = express();
 
@@ -26,12 +26,6 @@ app.get('/post',private ,(req, res) => {
   res.json('HIIII Auth!');
 });
 
-app.get('/login', notLogged, (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
-});
 
-app.get('/register', notLogged, (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'register.html'));
-});
 
 module.exports = app;
