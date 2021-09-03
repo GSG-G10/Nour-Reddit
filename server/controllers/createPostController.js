@@ -3,11 +3,12 @@ const { addPost } = require('../postgres/query/postsQueries');
 
 exports.createPost = async (req, res) => {
   const { id } = req.user;
-  const { title, content } = req.body;
+  const { title, content, subreddit } = req.body;
 
   try {
-    await addPost(title, content, id);
+    await addPost(title, content, subreddit, id);
   } catch (err) {
+    console.log(err);
     res.status(500).send('Sorry, internal server error 500!');
   }
 };
