@@ -4,7 +4,6 @@ const signUser = require('../postgres/query/signup');
 const { createToken } = require('../utils/createToken');
 const { registerValidation } = require('../utils/validation');
 
-// eslint-disable-next-line consistent-return
 exports.registerPost = async (req, res) => {
   // validate data before we make a user
   const { error } = await registerValidation(req.body);
