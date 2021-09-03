@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 // cookieParser();
 
-exports.private = (req, res, next) => {
+exports.privateRoute = (req, res, next) => {
   const { authToken } = req.cookies;
   if (!authToken) {
     return res.status(401)

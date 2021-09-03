@@ -8,4 +8,14 @@ CREATE TABLE users(
     bio TEXT,
     img_profile TEXT
 );
+
+
+CREATE TABLE posts(
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content text NOT NULL,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE ,
+    post_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    votes INTEGER DEFAULT 1 
+);
 COMMIT;

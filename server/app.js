@@ -3,8 +3,10 @@ const path = require('path');
 const express = require('express');
 const compresion = require('compression');
 const cookieParser = require('cookie-parser');
-const router = require('./routes/auth');
-const { private } = require('./middlewares/privateRoute');
+const authRoutes = require('./routes/auth');
+const postRoutes = require('./routes/post');
+const { privateRoute } = require('./middlewares/privateRoute');
+const { createPost } = require('./controllers/createPostController');
 
 const app = express();
 
@@ -14,18 +16,17 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(compresion());
 app.use(express.urlencoded({ extended: false }));
-// app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
-app.use(router);
+app.use('/', authRoutes);
+app.use('/', postRoutes);
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
-app.get('/post',private ,(req, res) => {
-  console.log(req.user.username);
-  res.json('HIIII Auth!');
-});
-
-
+// app.get('/post', (req, res) => {
+//   res.sendFile(path.join(__dirname, '..', 'public', 'pages', 'post.html'));
+// });
+// app.post('/post', privateRoute, createPost);
 
 module.exports = app;
