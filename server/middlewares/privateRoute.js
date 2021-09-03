@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 // cookieParser();
 
-exports.auth = (req, res, next) => {
+exports.private = (req, res, next) => {
   const { authToken } = req.cookies;
   if (!authToken) {
     return res.status(401)
@@ -16,4 +16,10 @@ exports.auth = (req, res, next) => {
   } catch (err) {
     res.status(400).json({ success: false, msg: 'Invalid token!' });
   }
+};
+
+exports.notLogged = (req, res, next) => {
+  const { authToken } = req.cookies;
+  if (authToken) return res.redirect('/');
+  next();
 };
