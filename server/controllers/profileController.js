@@ -1,5 +1,5 @@
-const getUserPosts = require('../postgres/query/getUserPosts');
-const getUserId = require('../postgres/query/getUserIdByName');
+const { getUserPosts } = require('../postgres/query/getUserPosts');
+const { getUserId } = require('../postgres/query/getUserIdByName');
 
 exports.profile = async (req, res) => {
   const { authToken } = req.cookies;
