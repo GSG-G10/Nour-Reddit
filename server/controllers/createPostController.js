@@ -7,6 +7,7 @@ exports.createPost = async (req, res) => {
 
   try {
     await addPost(title, content, subreddit, id);
+    res.redirect('./');
   } catch (err) {
     res.status(500).send('Sorry, internal server error 500!');
   }
