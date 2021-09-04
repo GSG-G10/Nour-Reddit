@@ -1,5 +1,5 @@
 BEGIN;
-DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS users,posts CASCADE;
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     username VARCHAR(100) NOT NULL,
@@ -7,5 +7,16 @@ CREATE TABLE users(
     password VARCHAR(100) NOT NULL,
     bio TEXT,
     img_profile TEXT
+);
+
+
+CREATE TABLE posts(
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content text NOT NULL,
+    subreddit VARCHAR(100) NOT NULL,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE ,
+    post_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    votes INTEGER DEFAULT 1 
 );
 COMMIT;
