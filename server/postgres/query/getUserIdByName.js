@@ -1,10 +1,11 @@
 const connection = require('../config/connection');
 
-exports.getUserId = (username) => {
+exports.getUserId = async (username) => {
   const sql = {
-    text: 'SELECT id FROM users username VALUES($1)',
+    text: 'SELECT id FROM users WHERE username = $1',
     values: [username],
   };
 
-  return connection.query(sql);
+  const ret = await connection.query(sql);
+  return ret.rows[0].id;
 };
