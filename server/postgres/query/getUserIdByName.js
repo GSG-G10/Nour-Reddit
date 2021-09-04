@@ -1,6 +1,6 @@
 const connection = require('../config/connection');
 
-exports.getUserPosts = (username) => {
+exports.getUserId = (username) => {
   const sql = {
     text: 'SELECT id FROM users username VALUES($1)',
     values: [username],
