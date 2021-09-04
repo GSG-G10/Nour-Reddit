@@ -5,8 +5,7 @@ const compresion = require('compression');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/post');
-const { privateRoute } = require('./middlewares/privateRoute');
-const { createPost } = require('./controllers/createPostController');
+const profileRoutes = require('./routes/profile');
 
 const app = express();
 
@@ -20,6 +19,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/', authRoutes);
 app.use('/', postRoutes);
+app.use('/u', profileRoutes);
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));

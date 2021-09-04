@@ -67,11 +67,11 @@ main {
 ********************/
 
 header {
-  background: gray;
+  background: rgb(0, 0, 0);
 }
 
 .title {
-  color: white;
+  color: rgb(236, 108, 34);
 }
 
 .main-logo {
@@ -104,11 +104,7 @@ textarea {
 }
 
 button[type="submit"] {
-  background: #a5df00;
-  background: -webkit-linear-gradient(#93c503, #abcc4b);
-  background: -o-linear-gradient(#93c503, #abcc4b);
-  background: -moz-linear-gradient(#93c503, #abcc4b);
-  background: linear-gradient(#93c503, #abcc4b);
+  background: rgb(12, 11, 11);
   border: none;
   color: white;
   padding: 4px 25px;
@@ -117,6 +113,9 @@ button[type="submit"] {
   float: right;
   margin-top: 10px;
   border-radius: 3px;
+}
+button:hover {
+  cursor: pointer;
 }
 
 /*******************

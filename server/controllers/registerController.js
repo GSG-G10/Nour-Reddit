@@ -28,5 +28,5 @@ exports.registerPost = async (req, res) => {
 };
 
 exports.registerGet = (req, res) => {
-  res.sendFile(path.join(__dirname, '..', '..', 'public', 'register.html'));
+  res.sendFile(path.join(__dirname, '..', '..', 'public', 'pages', 'register.html'));
 };
